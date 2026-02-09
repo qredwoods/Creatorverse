@@ -9,10 +9,10 @@ This project was built as **prework for an advanced web development course**.
 ## ✨ Overview
 
 **Browse all creators**  
-![Creatorverse overview](creatorverse.gif)
+![Creatorverse overview](./src/assets/creatorverse.gif)
 
 **Add a new creator**  
-![Add creator flow](creatorverse-add.gif)
+![Add creator flow](./src/assets/creatorverse-add.gif)
 
 ---
 
