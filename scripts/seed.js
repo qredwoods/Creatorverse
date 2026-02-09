@@ -1,3 +1,6 @@
+// This Script Wipes The Database, then repopulates it with 5 examples
+// for development use only
+
 import { supabase } from "../src/client.js";
 
 const DEFAULT_CREATORS = [

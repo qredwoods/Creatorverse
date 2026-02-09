@@ -65,28 +65,38 @@ export default function ViewCreator() {
   if (!creator) return <p>Creator not found.</p>;
 
   return (
-    <div>
-      <h1>{creator.name}</h1>
+<article>
+  <h2>{creator.name}</h2>
 
-      {creator.imageURL && (
-        <img src={creator.imageURL} alt={creator.name} style={{ maxWidth: 500 }} />
-      )}
+{creator.imageURL && (
+  <img
+    src={creator.imageURL}
+    alt={creator.name}
+    className="creator-image"
+  />
+)}
 
-      {creator.url && (
-        <p>
-          <a href={creator.url} target="_blank" rel="noreferrer">
-            Visit channel / link
-          </a>
-        </p>
-      )}
+  {creator.url && (
+    <p>
+      <a href={creator.url} target="_blank" rel="noreferrer">
+        Visit link →
+      </a>
+    </p>
+  )}
 
-      {creator.description && <p>{creator.description}</p>}
+  {creator.description && <p>{creator.description}</p>}
 
-      <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-        <Link to={`/creators/${creator.id}/edit`}>Edit</Link>
-         <button onClick={handleDelete}> Delete</button>
-        <button onClick={() => navigate("/")}>Back</button>
-      </div>
-    </div>
+  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <Link to={`/creators/${creator.id}/edit`} role="button">
+      Edit
+    </Link>
+    <button className="secondary" onClick={handleDelete}>
+      Delete
+    </button>
+    <Link to="/" className="secondary" role="button">
+      Back
+    </Link>
+  </div>
+</article>
   );
 }

@@ -121,7 +121,7 @@ export default function CreatorSettings() {
 
   return (
     <div>
-      <h1>{isEdit ? "Edit Creator" : "Add Creator"}</h1>
+      <h2>{isEdit ? "Edit Creator" : "Add Creator"}</h2>
 
       {errorMsg && <p style={{ color: "crimson" }}>{errorMsg}</p>}
 

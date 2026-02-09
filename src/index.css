@@ -1,0 +1,184 @@
+.creator-image {
+  max-width: 100%;
+  max-height: 420px;      /* controls how big images get */
+  height: auto;
+  width: auto;
+  display: block;
+  margin: 1rem auto;      /* centers it nicely */
+  border-radius: 12px;
+}
+
+.creator-name {
+  white-space: nowrap;        /* don’t break onto multiple lines */
+  overflow: hidden;           /* hide overflow */
+  text-overflow: ellipsis;    /* show … instead of breaking */
+}
+
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+article {
+  backdrop-filter: blur(6px);
+  background: rgba(20, 20, 25, 0.75);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+
+body {
+  min-height: 100vh;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("https://cdn.mos.cms.futurecdn.net/nbaR6JXZ3Z7mzuW9bh4nQN-1200-80.jpg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional; can remove on mobile if janky */
+}
+
+/* ─────────────────────────────────────────────
+   Creator Cards: glass + clean nebula schwing + centered titles
+   Replace older article hover blocks with this
+   ───────────────────────────────────────────── */
+
+/* Card base */
+article {
+  position: relative;
+  overflow: hidden;                 /* prevents shimmer artifacts at edges */
+  border-radius: 16px;
+
+  background: rgba(18, 18, 26, 0.62);
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+/* Smooth gradient “fill” layer (behind content, no noise) */
+article::before {
+  content: "";
+  position: absolute;
+  inset: 0;                         /* avoid subpixel noise from -1px insets */
+  border-radius: inherit;
+  pointer-events: none;
+
+  /* subtle nebula tint, always present but gentle */
+  background: radial-gradient(
+      120% 140% at 0% 100%,
+      rgba(255, 105, 180, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      120% 140% at 100% 0%,
+      rgba(138, 43, 226, 0.20),
+      transparent 55%
+    );
+
+  opacity: 0.65;
+  transition: opacity 220ms ease;
+  z-index: 0;                       /* keep it behind content */
+}
+
+/* Keep all actual card content above the tint layer */
+article > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover: lift + richer fill + glow */
+article:hover {
+  transform: translateY(-4px) scale(1.01);
+
+  background: rgba(18, 18, 26, 0.72);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 105, 180, 0.22),
+    0 10px 34px rgba(186, 85, 211, 0.30),
+    0 0 70px rgba(138, 43, 226, 0.22);
+}
+
+article:hover::before {
+  opacity: 0.95;                    /* bring back that “color fill” on hover */
+}
+
+/* Image micro-response stays clean */
+article img {
+  transition: transform 220ms ease;
+}
+article:hover img {
+  transform: scale(1.03);
+}
+
+/* Metallic title + centered under image */
+article h3,
+article .creator-name {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.85rem;
+  margin-bottom: 0;
+
+  color: rgb(220, 228, 242);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.85),
+    0 0 2px rgba(255, 255, 255, 0.20),
+    0 0 4px rgba(170, 130, 255, 0.28);
+
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+article:hover h3,
+article:hover .creator-name {
+  color: rgb(245, 248, 255);
+  text-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.95),
+    0 0 5px rgba(255, 255, 255, 0.35),
+    0 0 8px rgba(190, 120, 255, 0.28),
+    0 0 12px rgba(120, 80, 255, 0.22);
+}
+
+/* Site brand (Creatorverse) */
+header h1,
+header .brand {
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: rgb(210, 215, 225); /* cool silver */
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.7),
+    0 0 8px rgba(255, 255, 255, 0.18),
+    0 0 14px rgba(160, 170, 255, 0.22);
+
+  opacity: 0.9;
+}
+
+
+
+/* Page titles (All Creators, Edit Creator, etc.) */
+h2 {
+  text-align: center;
+  margin: 2.5rem 0 2rem;
+
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  color: rgb(235, 238, 245);
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.65),
+    0 0 6px rgba(170, 180, 255, 0.2);
+}
+
