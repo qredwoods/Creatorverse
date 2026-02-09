@@ -35,7 +35,7 @@ Then open the local URL printed by Vite (usually `http://localhost:5173`).
 
 ## Supabase Setup
 
-This project connects directly to Supabase from the browser using a **public (anon/publishable) key**, which is acceptable for demos and coursework.
+This project connects directly to Supabase from the browser using a **public (anon/publishable) key**.
 
 Row Level Security (RLS) is disabled for simplicity.
 
@@ -86,7 +86,7 @@ This project intentionally uses a **simplified Supabase client**:
 * Public key
 * No authentication or RLS
 
-See comments `in client.js` regarding security and next steps for more advanced implementation.
+See comments  `client.js` regarding security and next steps for more advanced implementation.
 
 
 
