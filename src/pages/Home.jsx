@@ -6,7 +6,7 @@ export default function Home({ creators }) {
       <h1>All Creators</h1>
 
       {creators.length === 0 ? (
-        <p>No content creators found.</p>
+        <p>No content creators found. Add one!</p>
       ) : (
         creators.map((creator) => (
           <CreatorCard key={creator.id} creator={creator} />

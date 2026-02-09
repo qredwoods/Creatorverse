@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function CreatorCard({ creator }) {
   return (
+    <Link to={`/creators/${creator.id}`} style={{ textDecoration: "none", color: "inherit" }}>
     <div style={{ border: "1px solid #ddd", padding: "1rem", borderRadius: "8px" }}>
       <h2>{creator.name}</h2>
-
+       
       {creator.imageURL && (
         <img
           src={creator.imageURL}
@@ -11,11 +14,7 @@ export default function CreatorCard({ creator }) {
         />
       )}
 
-      <p>{creator.description}</p>
-
-      <a href={creator.url} target="_blank" rel="noreferrer">
-        {creator.url}
-      </a>
     </div>
+  </Link>
   );
 }
