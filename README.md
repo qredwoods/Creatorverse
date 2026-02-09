@@ -1,16 +1,109 @@
-# React + Vite
+# 🌌 Creatorverse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Creatorverse is a React + Vite single-page application that lets users create, view, edit, and delete content creators.  
+It uses **Supabase** as a backend and focuses on clean CRUD flows, routing, and modern React patterns.
 
-Currently, two official plugins are available:
+This project was built as **prework for an advanced web development course**.
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Overview
 
-## React Compiler
+**Browse all creators**  
+![Creatorverse overview](creatorverse.gif)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+**Add a new creator**  
+![Add creator flow](creatorverse-add.gif)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧰 Tech Stack
+
+- **Vite + React** (JavaScript)
+- **React Router** (SPA routing)
+- **Supabase** (Postgres + API)
+- **PicoCSS** (minimal styling)
+- No SSR, no Next.js
+
+---
+
+## 🚀 Getting Started
+
+### Install dependencies
+```bash
+npm install
+````
+
+### Run the development server
+
+```bash
+npm run dev
+```
+
+Then open the local URL printed by Vite (usually `http://localhost:5173`).
+
+---
+
+## 🗄️ Supabase Setup
+
+This project connects directly to Supabase from the browser using a **public (anon/publishable) key**, which is acceptable for demos and coursework.
+
+Row Level Security (RLS) is disabled for simplicity.
+
+The Supabase project should include a `creators` table with columns similar to:
+
+* `id` (primary key)
+* `name`
+* `url`
+* `description`
+* `imageURL`
+
+---
+
+## 🌱 Seeding the Database (Dev Convenience)
+
+A seed script is included to reset the database to a known default state for development.
+
+### Run the seed script
+
+```bash
+npm run seed
+```
+
+What this does:
+
+* Clears existing rows from the `creators` table
+* Inserts a small set of default creators
+* Intended for **local/dev use only**
+
+⚠️ Do not run the seed script against a production database.
+
+---
+
+### Routes
+
+* `/` — View all creators
+* `/creators/new` — Add creator
+* `/creators/:id` — View creator
+* `/creators/:id/edit` — Edit creator
+
+---
+
+## 🔒 Notes on Security
+
+This project intentionally uses a **simplified Supabase client**:
+
+* Direct browser access
+* Public key
+* No authentication or RLS
+
+See comments `in client.js` regarding security and next steps for more advanced implementation.
+
+---
+
+## 📦 Scripts
+
+```bash
+npm run dev    # start development server
+npm run seed   # reset + seed Supabase data (dev only)
+```
+
