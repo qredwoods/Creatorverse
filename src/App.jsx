@@ -26,16 +26,15 @@ export default function App() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Layout />,
-      children: [
-        { index: true, element: <Home creators={creators} /> },
-
-        // 4) Pass fetchCreators down as a prop so CreatorSettings can call it after CREATE/UPDATE
-        { path: "/creators/new", element: <CreatorSettings onSave={fetchCreators} /> },
-        { path: "/creators/:id", element: <ViewCreator /> },
-        { path: "/creators/:id/edit", element: <CreatorSettings onSave={fetchCreators} /> },
-      ],
-    },
+  element: <Layout fetchCreators={fetchCreators} />,
+  children: [
+    { index: true, element: <Home creators={creators} /> },
+    { path: "creators/new", element: <CreatorSettings /> },
+    { path: "creators/:id", element: <ViewCreator /> },
+    { path: "creators/:id/edit", element: <CreatorSettings /> },
+  ],
+}
+      
   ]);
 
   return routes;

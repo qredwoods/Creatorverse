@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-export default function Layout() {
+export default function Layout({ fetchCreators }) {
   return (
     <>
       <header style={{ padding: "1rem", borderBottom: "1px solid #ddd" }}>
@@ -11,7 +11,7 @@ export default function Layout() {
       </header>
 
       <main style={{ padding: "1rem" }}>
-        <Outlet />
+        <Outlet context={{ fetchCreators }} />
       </main>
     </>
   );

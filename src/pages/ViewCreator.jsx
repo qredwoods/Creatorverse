@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { supabase } from "../client"; 
+import { useOutletContext } from "react-router-dom";
+
 
 export default function ViewCreator() {
+  const { fetchCreators } = useOutletContext();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -42,6 +45,21 @@ export default function ViewCreator() {
     };
   }, [id]);
 
+    async function handleDelete() {
+    setErrorMsg("");
+
+    const ok = window.confirm("Delete this creator? This can’t be undone.");
+    if (!ok) return;
+
+    const { error } = await supabase.from("creators").delete().eq("id", id);
+
+    if (error) {
+      setErrorMsg(error.message);
+      return;
+    }
+  await fetchCreators(); // refresh list in App
+    navigate("/"); 
+  }
   if (loading) return <p>Loading creator…</p>;
   if (errorMsg) return <p style={{ color: "crimson" }}>{errorMsg}</p>;
   if (!creator) return <p>Creator not found.</p>;
@@ -66,6 +84,7 @@ export default function ViewCreator() {
 
       <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
         <Link to={`/creators/${creator.id}/edit`}>Edit</Link>
+         <button onClick={handleDelete}> Delete</button>
         <button onClick={() => navigate("/")}>Back</button>
       </div>
     </div>

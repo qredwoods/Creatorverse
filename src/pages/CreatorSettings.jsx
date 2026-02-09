@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useOutletContext } from "react-router-dom";
 import { supabase } from "../client";
 
 const emptyForm = {
@@ -9,7 +9,8 @@ const emptyForm = {
   imageURL: "",
 };
 
-export default function CreatorSettings({ onSave }) {
+export default function CreatorSettings() {
+  const { fetchCreators } = useOutletContext();
   const { id } = useParams();            // exists only on /creators/:id/edit
   const isEdit = Boolean(id);
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ export default function CreatorSettings({ onSave }) {
         return;
       }
       // updates full list of creators
-      if (onSave) await onSave();
+      await fetchCreators();
       navigate(`/creators/${id}`);
     } else {
       // CREATE
@@ -111,7 +112,7 @@ export default function CreatorSettings({ onSave }) {
       }
 
       // go to the new creator’s detail page, while also refreshing home's full list of creators
-      if (onSave) await onSave();
+      await fetchCreators();
       navigate(`/creators/${data.id}`);
     }
   }
