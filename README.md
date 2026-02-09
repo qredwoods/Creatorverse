@@ -1,4 +1,4 @@
-# 🌌 Creatorverse
+# Creatorverse
 
 Creatorverse is a React + Vite single-page application that lets users create, view, edit, and delete content creators.  
 It uses **Supabase** as a backend and focuses on clean CRUD flows, routing, and modern React patterns.
@@ -6,7 +6,7 @@ It uses **Supabase** as a backend and focuses on clean CRUD flows, routing, and 
 This project was built as **prework for an advanced web development course**.
 ---
 
-## ✨ Overview
+## Demo
 
 **Browse all creators**  
 ![Creatorverse overview](./src/assets/creatorverse.gif)
@@ -16,17 +16,7 @@ This project was built as **prework for an advanced web development course**.
 
 ---
 
-## 🧰 Tech Stack
-
-- **Vite + React** (JavaScript)
-- **React Router** (SPA routing)
-- **Supabase** (Postgres + API)
-- **PicoCSS** (minimal styling)
-- No SSR, no Next.js
-
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Install dependencies
 ```bash
@@ -43,7 +33,7 @@ Then open the local URL printed by Vite (usually `http://localhost:5173`).
 
 ---
 
-## 🗄️ Supabase Setup
+## Supabase Setup
 
 This project connects directly to Supabase from the browser using a **public (anon/publishable) key**, which is acceptable for demos and coursework.
 
@@ -55,11 +45,11 @@ The Supabase project should include a `creators` table with columns similar to:
 * `name`
 * `url`
 * `description`
-* `imageURL`
+* `imageURL`(nullable)
 
 ---
 
-## 🌱 Seeding the Database (Dev Convenience)
+## Seeding the Database (Dev Convenience)
 
 A seed script is included to reset the database to a known default state for development.
 
@@ -98,12 +88,5 @@ This project intentionally uses a **simplified Supabase client**:
 
 See comments `in client.js` regarding security and next steps for more advanced implementation.
 
----
 
-## 📦 Scripts
-
-```bash
-npm run dev    # start development server
-npm run seed   # reset + seed Supabase data (dev only)
-```
 
